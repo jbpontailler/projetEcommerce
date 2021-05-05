@@ -1,0 +1,156 @@
+body {
+    font-family: 'Dancing Script', cursive;  
+    background-color: #f0eee4;
+}
+.panier {
+    margin-right: 15px;
+}
+.search {
+    padding-right: 80px;
+}
+.panierPhone {
+    margin-right: 15px;
+}
+.fab {
+    color: gainsboro;
+}
+.pay {
+    background-color: #e9e7dd;
+}
+.colorchange:hover{
+    color:#e9e7dd;
+}   
+.titre {
+    text-shadow: 7px 5px #c4c4c4c9;
+    font-size: 65px;
+}
+.margin{
+    margin-top: 3%;
+}
+.centerbtn{
+    text-align: center;
+}
+.mleft{
+    margin-top: 30px;
+}
+.name {
+    font-family: Helvetica, sans-serif;
+}
+
+/* CSS Carousel */
+
+.carousel_innerContainer {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+  }
+  
+  .sf {
+    font-family: 'VenusRising';
+    font-size: 2.5rem;
+    margin: 10px 0 20px 0;
+  }
+  
+  .detective {
+    font-family: 'Caveat', cursive;
+    font-size: 5rem;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 992px) {
+    .sf {
+      font-size: 2rem;
+    }
+  
+    .detective {
+      font-size: 3rem;
+    }
+  
+    .carousel-item h3 {
+      font-size: 1rem;
+      width: 70%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sf {
+      font-size: 1rem;
+    }
+  
+    .detective {
+      font-size: 2rem;
+    }
+  
+    .carousel-item h3 {
+      font-size: 0.7rem;
+      width: 80%;
+    }
+  }
+  
+  /* CSS Nouveauté*/
+  :root {
+      --main-color:#321f28;
+      --secondary-color: #734046;
+  }
+  .bloc1{
+      
+      background-color: var(--main-color);
+  }
+  .bloc2 {
+      background-color: white;
+      color: var(--main-color);
+  }
+  .form-group {
+      color: var(--main-color);
+  }
+  
+  /* CSS Presentation*/
+  .secondaryColor {
+      background-color: var(--secondary-color);
+  }
+  .flexVerticalAlign {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+  }
+  
+  .bloc3 {
+      color: var(--main-color);
+      background-color: white; 
+      font-family:Arial, Helvetica, sans-serif;
+  }
+  /* CSS Footer*/
+  .footer
+  {
+      background-color: var(--main-color);
+  }
+  .socials {
+      width: 50%;
+  }
+  
+  .img_size
+  {
+      width: 50px;
+      height: 50px;
+  }
+  .row{
+      font-size: 18px;
+  }
+
+.checked { 
+    color: rgb(255, 135, 7);
+}
+
+.item{
+    text-align: center;
+}
+

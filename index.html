@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.6/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.6/assets/owl.theme.default.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+    <div class="conatainer">
+
+<!-- Barre de Navigation -->
+
+            <!-- modal option connexion/inscription -->
+            <div class="modal text-dark" tabindex="-1" id='modal' data-bs-backdrop="static">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <p class="modal-title text-dark fw-bold">Connexion/Inscription</p>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Entrez-votre adresse email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control">
+                      </div>
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input">
+                        <label class="form-check-label">Acceptez notre politique de confidentialité</label>
+                      </div>
+                      <button type="submit" class="btn btn-primary ms-3">Valider</button>
+                      <button type="submit" class="btn btn-success float-end">Créer un compte</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="close btn btn-secondary" data-bs-dismiss="modal">X Fermer</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- fin modal option -->
+
+            <!-- Modal panier -->
+            <div class="modal fade" id="modalPanier" tabindex="-1" aria-labelledby="modalPanierLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="modalPanierLabel">Panier d'achat</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <table class="table">
+                              <thead>
+                                  <tr>
+                                      <th id="article-modal"></th>
+                                      <th id="price-modal"></th>
+                                      <th id="qte-modal"></th>
+                                  </tr>
+                              </thead>
+                              <tbody id="cart-tablebody"></tbody>
+                          </table>
+                          <p>Sous total : <span class="subtotal"></span>€</p>
+                          <button id="confirm-command">Passer la commande</button>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary clearCart">Supprimer le panier</button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Fin modal panier -->
+            
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container-fluid">
+              <div class="phone">
+                <a type="button" class="btn btn-light d-block d-md-none float-end" data-bs-toggle="modal" data-bs-target="#modal"><i class="fas fa-sign-in-alt"></i></a>
+                <a type="button" class="btn btn-light d-block d-md-none float-end buy" data-bs-toggle="modal" data-bs-target="#modalPanier"><i class="fas fa-shopping-cart"></i></a>
+              </div>
+                <a class="navbar-brand d-block" href="index.html">Lux</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto">
+                  <li class="nav-item">
+                    <a id="bra" class="nav-link" href="#bracelet" role="button">Bracelet</a>
+                  </li>
+                  <li class="nav-item">
+                    <a id="col" class="nav-link" href="#collier" role="button">Collier</a>
+                  </li>
+                  <li class="nav-item">
+                    <a id="bcl" class="nav-link" href="#boucle" role="button" >Boucle d'oreille</a>
+                  </li>
+                  <li class="nav-item">
+                    <a id="bag" class="nav-link" href="#bague" role="button">Bague</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" role="button">Wish List</a>
+                  </li>
+                    </ul>
+                    <div class="search"><form class="d-flex">
+                    <input class="form-control" type="search" placeholder="Rechercher" aria-label="Search" id="jewel">
+                    <button class="btn btn-secondary" type="submit"><i class="fab fa-searchengin"></i></button>
+                </form></div>
+                </div>
+                <div class="float-end">
+                  <a type="button" class="btn btn-secondary d-none d-md-block float-end" data-bs-toggle="modal"
+                      data-bs-target="#modal"><i class="fas fa-sign-in-alt"></i> Connexion/Inscription</a>>
+                  <a type="button" class="panier btn btn-secondary d-none d-md-block float-end buy"
+                      data-bs-toggle="modal" data-bs-target="#modalPanier"><span class="badge bg-secondary"></span>
+                      <span class="visually-hidden">unread messages</span><i class="fas fa-shopping-cart buy"></i>
+                      Panier</a>
+                  </div>
+            </div>
+        </nav>
+         
+<!-- carousel -->
+    <div class="owl-carousel pt-5 pb-4">
+      <img src="./pictures/satisfaction.jpg" alt="Grimoir Collier" />
+      <img src="./pictures/satisfaction 2.jpg" alt="Vintage Collier" />
+      <img src="./pictures/satisfaction 3.jpg" alt="Ethnique Bague" />
+      <img src="./pictures/satisfaction 4.jpg" alt="Pierre d'eau Bague" />
+      <img src="./pictures/satisfaction 5.jpg" alt="Créoline Boucle" />
+      <img src="./pictures/satisfaction 6.jpg" alt="Indiana Boucle 6" />
+    </div>
+    <hr />
+    
+    <div class="owl-carousel owl-theme">
+      <div class="item"><h4>Collier Grimoir</h4> 
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <p>Mélanie</p>
+        <p>Trop contente de mon achat ! <br/>Merci je recommanderais avec plaisir</p>
+       </div>
+      <div class="item"><h4>Collier Vintage</h4>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <p>Sabrine</p>
+        <p>Magnifique <br/>Dommage que la livraison ait pris du temps</p>   
+    </div>
+      <div class="item"><h4>Bague ethnique</h4>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <p>Paula</p>
+        <p>Jolie! <br/>Juste j'ai eu un problème avec la taille</p>  
+    </div>
+      <div class="item"><h4>Bague pierre d'eau</h4>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <p>Rajay</p>
+        <p>Idéal pour l'été<br/>j'attends les soldes pour recommander</p>   
+    </div>
+      <div class="item"><h4>Boucle Créoline</h4>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <p>Maya</p>
+        <p>Je suis fan!<br/>Merci je recommanderais avec plaisir</p>  
+    </div>
+    <div class="item"><h4>Collier Indiana</h4>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <p>Amania</p>
+        <p>magnifique<br/>ça rend parfait pour mon shooting</p> 
+    </div>
+    </div>
+    <hr/>
+
+<!-- Card title     -->
+<!--Card X3 #1-->
+<div class="container">
+  <section id="bracelet">
+    <h2 class="titre text-center pt-5 mt-6 text-secondary"><strong>Bracelets</strong></h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-auto w-75 d-flex">
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/1_1.jpg" class="card-img-top" alt="Bague1">
+                <div class="card-body">
+                <div class="star float-end">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </div>
+                  <h4 class="card-title name">150€</h4>
+                    <h5 class="card-title fw-bold name">Bracelet Chaine</h5>
+                    <p class="card-text name">Le bracelet chaine vous apporte la confiance en vous et vous rappel
+                      que vous n'êtes pas seul.</p>
+                    <div class="centerbtn"><button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                      data-bs-target="#modalPanier">Achat</button>
+                  <button class="btn btn-light pay mt-2 add-to-cart" data-id="1"
+                      data-name="Bague Pâquerette" data-price="150.0" data-qte="1">Ajouter au
+                      panier</button></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100  col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/1_2.jpg" class="card-img-top" alt="Bague2">
+                <div class="card-body">
+                <div class="star float-end">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                  <h4 class="card-title name">140€</h4>
+                    <h5 class="card-title fw-bold name">Bracelet Soleil</h5>
+                    <p class="card-text name">Le bracelet soleil vous apportera la clairevoyance pour
+                      mener à bien <br> vos projet.</p>
+                    <div class="centerbtn">
+                      <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                          data-bs-target="#modalPanier">Achat</button>
+                      <button class="btn btn-light pay mt-2 add-to-cart" data-id="2" data-name="Bague Gaïa"
+                          data-price="140,00" data-qte="1">Ajouter au panier</button></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/1_3.jpg" class="card-img-top" alt="Bague3">
+                <div class="card-body">
+                <div class="star float-end">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </div>
+                  <h4 class="card-title name">110€</h4>
+                    <h5 class="card-title fw-bold name">Bracelet Dragon</h5>
+                    <p class="card-text name">Le bracelet coeur de dragon vous vivifie le coeur et renouvelle
+                      votre energie <br> vital.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="3"
+                              data-name="Bague Depoter" data-price="110,00" data-qte="1">Ajouter au
+                              panier</button></div>
+                </div>
+            </div>
+        </div>
+    </div></section>
+    <!--Card X3 #2 -->
+    <section id="collier">
+    <h2 class="titre text-center pt-5 mt-6 text-secondary"><strong>Colliers</strong></h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-auto w-75 margin">
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/2_1.jpg" class="card-img-top" alt="Collier1">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </div>
+                  <h4 class="card-title name">180€</h4>
+                    <h5 class="card-title fw-bold name">Collier Diamant</h5>
+                    <p class="card-text name">Le collier Dimant nous éclaire de sa majestueuse énergie et de son éclat
+                      scintillant.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="4"
+                              data-name='Boucle "as de trefle"' data-price="180,00" data-qte="1">Ajouter au
+                              panier</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/2_2.jpg" class="card-img-top" alt="Collier2">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                    <h5 class="card-title fw-bold name">Collier Libellule</h5>
+                    <p class="card-text name">Le collier libellule apporte une touche de liberté et nous rememort notre
+                      liberté jadis perdu.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="5"
+                              data-name="Collier Diamant" data-price="150,00" data-qte="1">Ajouter au
+                              panier</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/2_3.jpg" class="card-img-top" alt="Collier3">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                    <h5 class="card-title fw-bold name">Collier Dragon</h5>
+                    <p class="card-text name">Le collier coeur de dragon vous vivifie le coeur et renouvelle
+                      votre <br> energie vital.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="6"
+                              data-name="Collier Libellule" data-price="150,00" data-qte="1">Ajouter au
+                              panier</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div></section>
+    <!--Card X3 #3 -->
+    <section id="boucle">
+    <h2 class="titre text-center pt-5 mt-6 text-secondary"><strong>Boucles d'oreilles</strong></h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-auto w-75 margin">
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/3_1.jpg" class="card-img-top" alt="Boucle1">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                    <h5 class="card-title fw-bold name">Boucle Dépoter</h5>
+                    <p class="card-text name">Bague de pot de fleur et de l'esprit du feu, elle nous informe de la
+                      vivacité de l'esprit dans ce pot.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="7"
+                              data-name="Bague Pâquerette" data-price="150,00" data-qte="1">Ajouter au
+                              panier</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/3_2.jpg" class="card-img-top" alt="Boucle2">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                  <h5 class="card-title fw-bold name">Boucle As de trefle</h5>
+                    <p class="card-text name">Les boucle d'oreilles As de trefle nous informe de la puissance que
+                      possède son porteur.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="8"
+                              data-name="Bague Pâquerette" data-price="150,00" data-qte="1">Ajouter au
+                              panier</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/3_3.jpg" class="card-img-top" alt="Boucle3">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                  <h5 class="card-title fw-bold name">Boucle Arlequin</h5>
+                    <p class="card-text name">Ces boucle d'oreille, nous transporte dans une fête ephemaire qui
+                      nous donne du baume au coeur.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="9"
+                              data-name="Bague Pâquerette" data-price="150,00" data-qte="1">Ajouter au
+                              panier</button></div>
+                </div>
+            </div>
+        </div>
+    </div></section>
+    <!--Card X3 #4 -->
+    <section id="bague">
+    <h2 class="titre text-center pt-5 mt-6 text-secondary"><strong>Bagues</strong></h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-auto w-75 margin">
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/4_1.jpg" class="card-img-top" alt="Bague1">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                    <h5 class="card-title fw-bold name">Bague Pâquerette</h5>
+                    <p class="card-text name">Remplit comme un jardin d'été, cette bague à l'effigie de la nature
+                      nous plonge dans la légèreté et la délicatesse.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="10"
+                              data-name="Bague Pâquerette" data-price="150,00" data-qte="1">Ajouter au
+                              panier</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/4_2.jpg" class="card-img-top" alt="Bague2">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                  <h5 class="card-title fw-bold name">Bague Gaïa</h5>
+                    <p class="card-text name">Cette bague à l'extrait de l'essence de la terre, nous nourrie de toute
+                      son energie. Les puissants ancetre sont de nos coté.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</a>
+                              <button class="btn btn-light pay mt-2 add-to-cart" data-id="11"
+                                  data-name="Bague Pâquerette" data-price="150,00" data-qte="1">Ajouter au
+                                  panier</button>
+                                </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card h-100 col-xs-6 d-md-block shadow p-3 mb-5 bg-body rounded">
+                <img src="img/4_3.jpg" class="card-img-top" alt="Bague3">
+                <div class="card-body">
+                  <div class="star float-end">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                  </div>
+                  <h4 class="card-title name">150€</h4>
+                    <h5 class="card-title fw-bold name">Bague café</h5>
+                    <p class="card-text name">La bague café est un atout pour votre energie et votre santé mental, vous pourrez vous organisez plus facilement.</p>
+                        <div class="centerbtn">
+                          <button class="btn btn-light pay mt-2 buy" data-bs-toggle="modal"
+                              data-bs-target="#modalPanier">Achat</button>
+                          <button class="btn btn-light pay mt-2 add-to-cart" data-id="12"
+                              data-name="Bague Pâquerette" data-price="150,00" data-qte="1">Ajouter au
+                              panier</button></div>
+                </div>
+            </div>
+        </div>
+    </div></section>
+</div>
+ 
+
+<!-- Footer -->
+    <footer class="text-center bg-white mt-5">
+      <hr/>
+    <a href="index.html"><i class="fas fa-chevron-up"></i></a><br>
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col">
+          <a href="https://fr-fr.facebook.com/" target="_blank" class="link">
+            <i class="fab fa-facebook fa-2x"></i><span class="d-none d-md-block"></span></a>
+        </div>
+        <div class="col">
+          <a href="https://www.pinterest.fr/" target="_blank" class="link">
+            <i class="fab fa-pinterest fa-2x"></i><span class="d-none d-md-block"></span></a>
+        </div>
+        <div class="col">
+          <a href="https://www.instagram.com/?hl=fr" target="_blank" class="link">
+            <i class="fab fa-instagram fa-2x"></i><span class="d-none d-md-block"></span></a>
+        </div>
+        <div class="col">
+          <a href="https://twitter.com/?lang=fr" target="_blank" class="link">
+            <i class="fab fa-twitter fa-2x"></i><span class="d-none d-md-block"></span></a>
+        </div>
+        <div class="col">
+          <a href="https://www.youtube.com/" target="_blank" class="link">
+            <i class="fab fa-youtube fa-2x"></i><span class="d-none d-md-block"></span></a>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="colorchange mt-3 display-6">Copyright @ Lux</a>
+    </footer>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.6/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>  
+
+    <script src="index.js"></script>
+
+</body>
+</html>
